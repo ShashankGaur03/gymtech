@@ -7,7 +7,7 @@ import gymtech from "../Images/GymTech.jpg"
 const Body = ()=>{
     return (
         <>
-    <section className="section-1">
+    <section id="section-1">
         <div className="section-1-item">
             <div className="items-details"><p>Gym</p></div>
             <img src={dumbell} alt="dubmell" />
@@ -24,7 +24,7 @@ const Body = ()=>{
         </div>
     </section>
 
-    <section className="section-2">
+    <section id="section-2">
         <div className="section-2-heading">
             <p>Popular localities in and around Delhi NCR</p>
         </div>
@@ -70,7 +70,7 @@ const Body = ()=>{
         </div>
     </section>
 
-    <section className="section-3">
+    <section id="section-3">
         <div className="section-3-container">
             <div className="section-3-img">
                 <img src={gymtech} alt="gymtech" />

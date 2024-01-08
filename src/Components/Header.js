@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import img1 from "../Images/best-luxury-gyms-london-1577449934.jpg";
 import gymtech from "../Images/GymTech.jpg"
+import {Link} from "react-scroll";
+import {NavLink} from "react-router-dom";
+import { onAuthStateChanged , signOut } from "firebase/auth";
+import { auth } from "../firebase-config";
 
 const Header = ()=>{
+
+    const [user,setUser] = useState({});
+
+    useEffect(()=>{
+        onAuthStateChanged(auth,(currentUser)=>{
+            setUser(currentUser);
+        })
+    },[])
+
+    const logout = async ()=>{
+        await signOut(auth);
+    }
+
     return (
         <header>
         <div className="nav">
@@ -10,9 +27,33 @@ const Header = ()=>{
                 <p>Get The App</p>
             </div>
             <ul className="nav-bar">
-                <li>Add Gym</li>
-                <li>Log in</li>
-                <li>Sign up</li>
+                <li>
+                    <Link to="section-1" smooth={true} duration={500}>
+                        About
+                    </Link>
+                </li>
+                {/* {!user && <li>
+                    <NavLink to="/login">
+                        Add Gym
+                    </NavLink>
+                </li>} */}
+                {!user && <li>
+                    <NavLink to="/addgym">
+                        Add Gym
+                    </NavLink>
+                </li>}
+                {!user && <li>
+                    <NavLink to="/login">
+                        Log in/Sign up
+                    </NavLink>
+                </li>}
+                {user && <>
+                <li>
+                    {user.email}
+                </li>
+                <button onClick={logout}>Logout</button>
+                </>
+                }
             </ul>
         </div>
         <div className="head">
