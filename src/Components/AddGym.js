@@ -8,6 +8,12 @@ const AddGym = ()=>{
     const [city,setCity] = useState("");
     const [address,setAddress] = useState("");
 
+    console.log(gymName);
+    console.log(fullName);
+    console.log(contact);
+    console.log(city);
+    console.log(address);
+
     const handleSubmit = (event)=>{
         event.preventDefault();
         // if(gymName==""){
