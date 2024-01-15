@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import dumbell from "../Images/dumbell.webp"
 import yoga from "../Images/yoga.jpg"
 import zumba from "../Images/zumba.webp"
 import gymtech from "../Images/GymTech.jpg"
+import { gymContext } from "../Contexts/GymContext";
 
 const Body = ()=>{
+
+    const a = useContext(gymContext);
+
+    useEffect(()=>{
+
+    },[])
+
     return (
         <>
     <section id="section-1">
@@ -32,39 +40,39 @@ const Body = ()=>{
             <div className="section-2-items">
                 <div className="section-2-item">
                     <p className="item-head">Cannaught Place</p>
-                    <p className="item-subhead">38 Gyms</p>
+                    <p className="item-subhead">{a.cp/2} Gyms</p>
                 </div>
                 <div className="section-2-item">
                     <p className="item-head">Janakpuri</p>
-                    <p className="item-subhead">64 Gyms</p>
+                    <p className="item-subhead">{a.jp/2} Gyms</p>
                 </div>
                 <div className="section-2-item">
                     <p className="item-head">Rajouri Garden</p>
-                    <p className="item-subhead">49 gyms</p>
+                    <p className="item-subhead">{a.rg/2} Gyms</p>
                 </div>
                 <div className="section-2-item">
                     <p className="item-head">Gurgaon</p>
-                    <p className="item-subhead">114 gyms</p>
+                    <p className="item-subhead">{a.gg/2} Gyms</p>
                 </div>
                 <div className="section-2-item">
                     <p className="item-head">Pitampura</p>
-                    <p className="item-subhead">61 gyms</p>
+                    <p className="item-subhead">{a.pt/2} Gyms</p>
                 </div>
                 <div className="section-2-item">
                     <p className="item-head">Dwarka</p>
-                    <p className="item-subhead">53 gyms</p>
+                    <p className="item-subhead">{a.dw/2} Gyms</p>
                 </div>
                 <div className="section-2-item">
                     <p className="item-head">Rohini</p>
-                    <p className="item-subhead">97 gyms</p>
+                    <p className="item-subhead">{a.rh/2} Gyms</p>
                 </div>
                 <div className="section-2-item">
                     <p className="item-head">Saket</p>
-                    <p className="item-subhead">39 gyms</p>
+                    <p className="item-subhead">{a.sk/2} Gyms</p>
                 </div>
                 <div className="section-2-item">
                     <p className="item-head">Hauz Khas</p>
-                    <p className="item-subhead">86 gyms</p>
+                    <p className="item-subhead">{a.hk/2} Gyms</p>
                 </div>
             </div>
         </div>

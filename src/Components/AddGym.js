@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import { storage , db } from "../firebase-config";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { ref as dbRef , set} from "firebase/database";
+import { v4 } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 const AddGym = ()=>{
 
@@ -7,35 +12,71 @@ const AddGym = ()=>{
     const [contact,setContact] = useState("");
     const [city,setCity] = useState("");
     const [address,setAddress] = useState("");
+    const [image,setImage] = useState(null);
+    const [flag,setFlag] = useState(true);
 
-    console.log(gymName);
-    console.log(fullName);
-    console.log(contact);
-    console.log(city);
-    console.log(address);
+    const navigate = useNavigate();
 
     const handleSubmit = (event)=>{
+        setFlag(false);
         event.preventDefault();
-        // if(gymName==""){
-        //     alert("Please enter a gym name.")
-        //     return;
-        // }
-        // if(fullName==""){
-        //     alert("Please enter the owner's name.")
-        //     return;
-        // }
-        // if(contact==""){
-        //     alert("Please enter the contact number.")
-        //     return;
-        // }
-        // if(city==""){
-        //     alert("Please select a city.")
-        //     return;
-        // }
-        // if(address==""){
-        //     alert("Please enter the gym address.")
-        //     return;
-        // }
+        if(gymName===""){
+            alert("Please enter a gym name.")
+            setFlag(true);
+            return;
+        }
+        if(fullName===""){
+            alert("Please enter the owner's name.")
+            setFlag(true);
+            return;
+        }
+        if(contact===""){
+            alert("Please enter the contact number.")
+            setFlag(true);
+            return;
+        }
+        if(city===""){
+            alert("Please select a city.")
+            setFlag(true);
+            return;
+        }
+        if(address===""){
+            alert("Please enter the gym address.")
+            setFlag(true);
+            return;
+        }
+        let ext = "";
+        const len = image.name.length;
+        for(let i=len-1 ; i>=0 ; i--){
+            if(image.name[i]==='.') break;
+            ext += image.name[i];
+        }
+        ext = ext.split("").reduce((acc,char)=>char+acc+"");
+        if(ext!=="png" && ext!=="jpg" && ext!=="jpeg"){
+            alert("Image is not of specified type");
+            setFlag(true);
+            return;
+        }
+        const imageRef = ref(storage,`${image.name+v4()}`);
+        uploadBytes(imageRef,image).then((res)=>{
+            getDownloadURL(res.ref).then((url)=>{
+                set(dbRef(db,`${v4()}`),{
+                    "gymName":gymName,
+                    "fullName":fullName,
+                    "contact":contact,
+                    "city":city,
+                    "address":address,
+                    "url":url
+                });
+                navigate("/",{replace:true});
+            }).catch((error)=>{
+                setFlag(true);
+                console.log(error);
+            })
+        }).catch((error)=>{
+            setFlag(true);
+            console.log(error);
+        })
     }
 
     return (
@@ -81,6 +122,7 @@ const AddGym = ()=>{
                         <label htmlFor="dropdown">Select City</label>
                         <select 
                             id="dropdown"
+                            name="dropdown"
                             onChange={(event)=>{
                                 setCity(event.target.value);
                             }}
@@ -98,19 +140,31 @@ const AddGym = ()=>{
                         </select>
                     </div>
                     <div className="user-input-box-full">
-                        <label htmlFor="password">Gym Address</label>
-                        <input type="password"
-                            id="password"
-                            name="password"
+                        <label htmlFor="address">Gym Address</label>
+                        <input type="text"
+                            id="address"
+                            name="address"
                             placeholder="Enter Gym Address"
                             onChange={(event)=>{
                                 setAddress(event.target.value);
                             }}
                         />
                     </div>
+                    <div className="user-input-box">
+                        <label htmlFor="image">Upload an Image {"JPG/JPEG/PNG"}</label>
+                        <input 
+                            type="file" 
+                            id="image"
+                            name="image"
+                            onChange={(event)=>{
+                                setImage(event.target.files[0]);
+                            }}
+                        />
+                    </div>
                 </div>
                 <div className="form-submit-btn">
-                <input type="submit" value="Add" />
+                {flag && <input type="submit" value="Add" />}
+                {!flag && <input type="submit" value="Add" disabled={true}/>}
                 </div>
             </form>
             </div>

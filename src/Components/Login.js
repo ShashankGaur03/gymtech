@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { 
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    onAuthStateChanged,
-    signOut
+    signInWithPopup
 } from "firebase/auth";
-import { auth } from "../firebase-config";
+import { auth , provider } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 
 const Login = ()=>{
@@ -14,44 +13,38 @@ const Login = ()=>{
     const [registerPassword,setRegisterPassword] = useState("");
     const [loginEmail,setLoginEmail] = useState("");
     const [loginPassword,setLoginPassword] = useState("");
-    const [user,setUser] = useState({});
-
-    useEffect(()=>{
-        onAuthStateChanged(auth,(currentUser)=>{
-            setUser(currentUser);
-        })
-    },[])
 
     const register = async ()=>{
         try{
-            const user = await createUserWithEmailAndPassword(auth,registerEmail,registerPassword);
-            console.log(user);
+            await createUserWithEmailAndPassword(auth,registerEmail,registerPassword);
             navigate("/",{replace:true});
         } catch(error){
             console.log(error);
         }
-
     }
 
     const login = async ()=>{
         try{
-            const user = await signInWithEmailAndPassword(auth,loginEmail,loginPassword);
-            console.log(user);
+            await signInWithEmailAndPassword(auth,loginEmail,loginPassword);
             navigate("/",{replace:true});
-            
         } catch(error){
             console.log(error);
         }
     }
 
-    const logout = async ()=>{
-        await signOut(auth);
+    const signInWithGoogle = async ()=>{
+        try{
+            await signInWithPopup(auth,provider);
+            navigate("/",{replace:true});
+        } catch(error){
+            console.log(error);
+        }
     }
 
     const navigate = useNavigate();
 
     return (
-        <div>
+        <div className="container-login">
             Login page
             <div>
                 <h3>Register User</h3>
@@ -88,11 +81,7 @@ const Login = ()=>{
                 />
                 <button onClick={login}>Login</button>
             </div>
-
-            <h4>User Logged In:</h4>
-            {user?.email}
-            <button onClick={logout}>Log out</button>
-
+            <button type="button" class="login-with-google-btn" onClick={signInWithGoogle}>Sign in with Google</button>
         </div>
     )
 }
