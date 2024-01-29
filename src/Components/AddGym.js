@@ -12,6 +12,7 @@ const AddGym = ()=>{
     const [contact,setContact] = useState("");
     const [city,setCity] = useState("");
     const [address,setAddress] = useState("");
+    const [website,setWebsite] = useState("");
     const [image,setImage] = useState(null);
     const [flag,setFlag] = useState(true);
 
@@ -66,6 +67,7 @@ const AddGym = ()=>{
                     "contact":contact,
                     "city":city,
                     "address":address,
+                    "website":website,
                     "url":url
                 });
                 navigate("/",{replace:true});
@@ -97,22 +99,22 @@ const AddGym = ()=>{
                         />
                     </div>
                     <div className="user-input-box">
-                        <label htmlFor="fullname">Owner's Name</label>
+                        <label htmlFor="fullname">Contact Name</label>
                         <input type="text"
                             id="fullname"
                             name="fullname"
-                            placeholder="Enter Owner's Name"
+                            placeholder="Enter Contact Name"
                             onChange={(event)=>{
                                 setFullName(event.target.value);
                             }}
                         />
                     </div>
                     <div className="user-input-box">
-                        <label htmlFor="contact">Contact</label>
+                        <label htmlFor="contact">Contact Number</label>
                         <input type="text"
                             id="contact"
                             name="contact"
-                            placeholder="Enter Gym Contact No."
+                            placeholder="Enter Contact No."
                             onChange={(event)=>{
                                 setContact(event.target.value);
                             }}
@@ -147,6 +149,17 @@ const AddGym = ()=>{
                             placeholder="Enter Gym Address"
                             onChange={(event)=>{
                                 setAddress(event.target.value);
+                            }}
+                        />
+                    </div>
+                    <div className="user-input-box-full">
+                        <label htmlFor="address">Gym Website (optional)</label>
+                        <input type="text"
+                            id="address"
+                            name="address"
+                            placeholder="Enter Gym Website URL"
+                            onChange={(event)=>{
+                                setWebsite(event.target.value);
                             }}
                         />
                     </div>

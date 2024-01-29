@@ -32,12 +32,12 @@ const Header = ()=>{
                         About
                     </Link>
                 </li>
-                {/* {!user && <li>
+                {!user && <li>
                     <NavLink to="/login">
                         Add Gym
                     </NavLink>
-                </li>} */}
-                {!user && <li>
+                </li>}
+                {user && <li>
                     <NavLink to="/addgym">
                         Add Gym
                     </NavLink>

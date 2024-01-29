@@ -1,17 +1,15 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext} from "react";
 import dumbell from "../Images/dumbell.webp"
 import yoga from "../Images/yoga.jpg"
 import zumba from "../Images/zumba.webp"
 import gymtech from "../Images/GymTech.jpg"
 import { gymContext } from "../Contexts/GymContext";
+import { useNavigate } from "react-router-dom";
 
 const Body = ()=>{
 
     const a = useContext(gymContext);
-
-    useEffect(()=>{
-
-    },[])
+    const navigate = useNavigate();
 
     return (
         <>
@@ -38,39 +36,39 @@ const Body = ()=>{
         </div>
         <div className="section-2-container">
             <div className="section-2-items">
-                <div className="section-2-item">
+                <div className="section-2-item" onClick={()=>navigate("/gyms/connaught-place")}>
                     <p className="item-head">Cannaught Place</p>
                     <p className="item-subhead">{a.cp/2} Gyms</p>
                 </div>
-                <div className="section-2-item">
+                <div className="section-2-item" onClick={()=>navigate("/gyms/janakpuri")}>
                     <p className="item-head">Janakpuri</p>
                     <p className="item-subhead">{a.jp/2} Gyms</p>
                 </div>
-                <div className="section-2-item">
+                <div className="section-2-item" onClick={()=>navigate("/gyms/rajouri-garden")}>
                     <p className="item-head">Rajouri Garden</p>
                     <p className="item-subhead">{a.rg/2} Gyms</p>
                 </div>
-                <div className="section-2-item">
+                <div className="section-2-item" onClick={()=>navigate("/gyms/gurgaon")}>
                     <p className="item-head">Gurgaon</p>
                     <p className="item-subhead">{a.gg/2} Gyms</p>
                 </div>
-                <div className="section-2-item">
+                <div className="section-2-item" onClick={()=>navigate("/gyms/pitampura")}>
                     <p className="item-head">Pitampura</p>
                     <p className="item-subhead">{a.pt/2} Gyms</p>
                 </div>
-                <div className="section-2-item">
+                <div className="section-2-item" onClick={()=>navigate("/gyms/dwarka")}>
                     <p className="item-head">Dwarka</p>
                     <p className="item-subhead">{a.dw/2} Gyms</p>
                 </div>
-                <div className="section-2-item">
+                <div className="section-2-item" onClick={()=>navigate("/gyms/rohini")}>
                     <p className="item-head">Rohini</p>
                     <p className="item-subhead">{a.rh/2} Gyms</p>
                 </div>
-                <div className="section-2-item">
+                <div className="section-2-item" onClick={()=>navigate("/gyms/saket")}>
                     <p className="item-head">Saket</p>
                     <p className="item-subhead">{a.sk/2} Gyms</p>
                 </div>
-                <div className="section-2-item">
+                <div className="section-2-item" onClick={()=>navigate("/gyms/hauz-khas")}>
                     <p className="item-head">Hauz Khas</p>
                     <p className="item-subhead">{a.hk/2} Gyms</p>
                 </div>

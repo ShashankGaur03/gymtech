@@ -45,45 +45,81 @@ const Login = ()=>{
 
     return (
         <div className="container-login">
-            Login page
-            <div>
-                <h3>Register User</h3>
-                <input 
-                    placeholder="Email" 
-                    onChange={(event)=>{
-                        setRegisterEmail(event.target.value);
-                    }}
-                />
-                <input 
-                    type="password"
-                    placeholder="Password" 
-                    onChange={(event)=>{
-                        setRegisterPassword(event.target.value);
-                    }}
-                />
-                <button onClick={register}>Create User</button>
+        <div className="container">
+          <h1 className="form-title">Create a new account</h1>
+          <div className="main-user-info">
+            <div className="user-input-box">
+              <label htmlFor="register-email">Email</label>
+              <input
+                className="input-field"
+                type="text"
+                placeholder="Email"
+                name="register-email"
+                id="register-email"
+                onChange={(event) => {
+                  setRegisterEmail(event.target.value);
+                }}
+              />
+              </div>
+            <div className="user-input-box">
+              <label htmlFor="register-password">Password</label>
+              <input
+                className="input-field"
+                type="password"
+                placeholder="Password"
+                name="register-password"
+                id="register-password"
+                onChange={(event) => {
+                  setRegisterPassword(event.target.value);
+                }}
+              />
             </div>
-
-            <div>
-                <h3>Login</h3>
-                <input 
-                    placeholder="Email" 
-                    onChange={(event)=>{
-                        setLoginEmail(event.target.value);
-                    }}
-                />
-                <input 
-                    type="password"
-                    placeholder="Password" 
-                    onChange={(event)=>{
-                        setLoginPassword(event.target.value);
-                    }}
-                />
-                <button onClick={login}>Login</button>
+            <button className="action-button" onClick={register}>
+              Create User
+            </button>
+          </div>
+          <h1 className="form-title">Login</h1>
+          <div className="main-user-info">
+            <div className="user-input-box">
+              <label htmlFor="login-email">Email</label>
+              <input
+                className="input-field"
+                type="text"
+                placeholder="Email"
+                name="login-email"
+                id="login-email"
+                onChange={(event) => {
+                  setLoginEmail(event.target.value);
+                }}
+              />
             </div>
-            <button type="button" class="login-with-google-btn" onClick={signInWithGoogle}>Sign in with Google</button>
+            <div className="user-input-box">
+              <label htmlFor="login-password">Password</label>
+              <input
+                className="input-field"
+                type="password"
+                placeholder="Password"
+                name="login-password"
+                id="login-password"
+                onChange={(event) => {
+                  setLoginPassword(event.target.value);
+                }}
+              />
+            </div>
+            <button className="action-button" onClick={login}>
+              Login
+            </button>
+          </div>
+          <button
+            className="login-with-google-btn"
+            type="button"
+            onClick={signInWithGoogle}
+          >
+            Sign in with Google
+          </button>
         </div>
-    )
+        </div>
+      );
 }
 
 export default Login;
