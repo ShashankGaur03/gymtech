@@ -12,56 +12,29 @@ const SetContexts = ()=>{
         get(dbRef(db)).then((snapshot)=>{
             if(!snapshot.val()) return;
             const temp = [];
-            // let cp,jp,rg,gg,pt,dw,rh,sk,hk;
-            // cp=jp=rg=gg=pt=dw=rh=sk=hk=0;
+            let cp,jp,rg,gg,pt,dw,rh,sk,hk;
+            cp=jp=rg=gg=pt=dw=rh=sk=hk=0;
             Object.keys(snapshot.val()).map((key)=>{
                 temp.push(snapshot.val()[key]);
                 const s = snapshot.val()[key].city;
-                if(s==="Connaught Place"){
-                    a.setCp((prev)=>{
-                        return prev+1;
-                    })
-                }
-                else if(s==="Janakpuri"){
-                    a.setJp((prev)=>{
-                        return prev+1;
-                    })
-                }
-                else if(s==="Rajouri Garden"){
-                    a.setRg((prev)=>{
-                        return prev+1;
-                    })
-                }
-                else if(s==="Gurgaon"){
-                    a.setGg((prev)=>{
-                        return prev+1;
-                    })
-                }
-                else if(s==="Pitampura"){
-                    a.setPt((prev)=>{
-                        return prev+1;
-                    })
-                }
-                else if(s==="Dwarka"){
-                    a.setDw((prev)=>{
-                        return prev+1;
-                    })
-                }
-                else if(s==="Rohini"){
-                    a.setRh((prev)=>{
-                        return prev+1;
-                    })
-                }
-                else if(s==="Saket"){
-                    a.setSk((prev)=>{
-                        return prev+1;
-                    })
-                }
-                else{
-                    a.setHk((prev)=>{
-                        return prev+1;
-                    })
-                }
+                if(s==="Connaught Place") cp++;
+                else if(s==="Janakpuri") jp++;
+                else if(s==="Rajouri Garden") rg++;
+                else if(s==="Gurgaon") gg++;
+                else if(s==="Pitampura") pt++;
+                else if(s==="Dwarka") dw++;
+                else if(s==="Rohini") rh++;
+                else if(s==="Saket") sk++;
+                else hk++;
+                a.setCp(cp);
+                a.setJp(jp);
+                a.setRg(rg);
+                a.setGg(gg);
+                a.setPt(pt);
+                a.setDw(dw);
+                a.setRh(rh);
+                a.setSk(sk);
+                a.setHk(hk);
                 return 0;
             });
             a.setArr(temp);
