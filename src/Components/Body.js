@@ -37,7 +37,7 @@ const Body = ()=>{
         <div className="section-2-container">
             <div className="section-2-items">
                 <div className="section-2-item" onClick={()=>navigate("/gyms/connaught-place")}>
-                    <p className="item-head">Cannaught Place</p>
+                    <p className="item-head">Connaught Place</p>
                     <p className="item-subhead">{a.cp} Gyms</p>
                 </div>
                 <div className="section-2-item" onClick={()=>navigate("/gyms/janakpuri")}>

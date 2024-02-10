@@ -1,9 +1,6 @@
 import React from "react";
 
 const Card = (props)=>{
-
-    console.log(props.website);
-
     return (
         <div className="gym-card">
             <img src={props.url} alt={`${props.gymName} Gym`} className="gym-image" />

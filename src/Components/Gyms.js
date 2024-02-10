@@ -12,8 +12,18 @@ const Gyms = ()=>{
     const a = useContext(gymContext);
 
     useEffect(()=>{
+        setCity(()=>{
+            if(params.city==="connaught-place") return "Connaught Place";
+            else if(params.city==="janakpuri") return "Janakpuri";
+            else if(params.city==="rajouri-garden") return "Rajouri Garden";
+            else if(params.city==="gurgaon") return "Gurgaon";
+            else if(params.city==="pitampura") return "Pitampura";
+            else if(params.city==="dwarka") return "Dwarka";
+            else if(params.city==="rohini") return "Rohini";
+            else if(params.city==="saket") return "Saket";
+            else return "Hauz Khas";
+        });
         setArr(a.arr.filter((e)=>{
-            if(city==="" && _.kebabCase(e.city)===params.city) setCity(e.city);
             return _.kebabCase(e.city)===params.city;
         }));
         // eslint-disable-next-line
