@@ -9,7 +9,7 @@ const Home = ()=>{
         <>
             <Header />
             <Body />
-            <Footer />
+            {false && <Footer />}
         </>
     )
 }

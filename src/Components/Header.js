@@ -23,9 +23,7 @@ const Header = ()=>{
     return (
         <header>
         <div className="nav">
-            <div>
-                <p>Get The App</p>
-            </div>
+            <div />
             <ul className="nav-bar">
                 <li>
                     <Link to="section-1" smooth={true} duration={500}>
